@@ -118,32 +118,12 @@ switch ($run) {
             $manifest_file = extractManifest($tempFile);
 
             if (is_file($manifest_file)) {
-
-                //SCAN THE MANIFEST FILE TO MAKE SURE NO COPIES OR ANYTHING ARE HAPPENING IN IT
-                require_once __DIR__ . '/../../ModuleInstall/ModuleScanner.php';
-
-                $ms = new ModuleScanner();
-                $ms->lockConfig();
-                $fileIssues = $ms->scanFile($manifest_file);
-                if (!empty($fileIssues)) {
-                    $out .= '<h2>' . translate('ML_MANIFEST_ISSUE', 'Administration') . '</h2><br>';
-                    $out .= $ms->getIssuesLog();
-                    break;
-                }
-
-                list($manifest, $installdefs) = MSLoadManifest($manifest_file);
-                if ($ms->checkConfig($manifest_file)) {
-                    $out .= '<h2>' . translate('ML_MANIFEST_ISSUE', 'Administration') . '</h2><br>';
-                    $out .= $ms->getIssuesLog();
-                    break;
-                }
-
+                require_once($manifest_file);
                 $error = validate_manifest($manifest);
                 if (!empty($error)) {
                     $out = "<b><span class='error'>{$error}</span></b><br />";
                     break;
                 }
-
                 $upgrade_zip_type = $manifest['type'];
 
                 // exclude the bad permutations
@@ -255,10 +235,12 @@ if (!$stop) {
         $GLOBALS['top_message'] = '';
     }
     $GLOBALS['top_message'] .= "<b>{$mod_strings['LBL_UPLOAD_SUCCESS']}</b>";
-} elseif (!$frozen) {
-    $GLOBALS['top_message'] .= "<br />";
 } else {
-    $GLOBALS['top_message'] = "<b>{$frozen}</b>";
+    if (!$frozen) {
+        $GLOBALS['top_message'] .= "<br />";
+    } else {
+        $GLOBALS['top_message'] = "<b>{$frozen}</b>";
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
