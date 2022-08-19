@@ -2,6 +2,8 @@
   <img width="180px" height="41px" src="https://suitecrm.com/wp-content/uploads/2017/12/logo.png" align="right" />
 </a>
 
+This docker app is for testing with an older SuiteCRM version. To set up clone or fork this repo, run the installer, and do a quick repair and rebuild.
+
 # SuiteCRM 7.10.35
 
 [![Build Status](https://travis-ci.org/salesagility/SuiteCRM.svg?branch=7.10.x)](https://travis-ci.org/salesagility/SuiteCRM)
