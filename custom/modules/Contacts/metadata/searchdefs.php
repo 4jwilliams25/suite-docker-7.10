@@ -29,14 +29,6 @@ $searchdefs['Contacts'] =
           'default' => true,
           'width' => '10%',
         ),
-        'mcccd_tags' =>
-        array(
-          'type' => 'Tagsearch',
-          'default' => true,
-          'label' => 'LBL_SEARCH_TAG',
-          'width' => '10%',
-          'name' => 'mcccd_tags',
-        ),
       ),
       'advanced_search' =>
       array(
@@ -136,14 +128,6 @@ $searchdefs['Contacts'] =
           'name' => 'lead_source',
           'default' => true,
           'width' => '10%',
-        ),
-        'mcccd_tags' =>
-        array(
-          'type' => 'Tagsearch',
-          'default' => true,
-          'label' => 'LBL_SEARCH_TAG',
-          'width' => '10%',
-          'name' => 'mcccd_tags',
         ),
       ),
     ),
